@@ -1,0 +1,166 @@
+{
+  "data":  [
+    {
+        "category_id": 0,
+        "name": "Kurt Sesleri",
+        "voices": [
+                { 
+                "voice_id" : 0,
+               "name": "Kurt Sesi 1",
+                "voice": "wolf.mp3", 
+                "length": "05:04"
+                }
+            ]
+    },
+    {
+        "category_id": 1,
+       "name": "Ağustos Böceği Sesleri",
+        "voices": [
+            { 
+                "voice_id" : 1,
+                "name": "Ağustos Böceği Sesi 1",
+                "voice": "cicada.mp3", 
+                 "length": "01:37"
+                }
+            ]
+        },
+        {
+            "category_id": 2,
+            "name": "Cırcır Böceği Sesleri",
+            "voices": [
+                { 
+                    "voice_id" : 2,
+                    "name": "Cırcır Böceği Sesi 1",
+                    "voice": "cricket.mp3", 
+                    "length": "01:15"
+                }
+            ]
+        },
+        {
+            "category_id": 3,
+            "name": "Kurbağa Sesleri",
+            "voices": [
+                { 
+                    "voice_id" : 3,
+                    "name": "Kurbağa Sesi 1",
+                    "voice": "frog1.mp3",
+                    "length": "00:29"
+                },
+                { 
+                    "voice_id" : 4,
+                    "name": "Kurbağa Sesi 2",
+                    "voice": "frog2.mp3",
+                    "length": "01:00"
+                }
+            ]
+        },
+        {
+            "category_id": 4,
+            "name": "Kuş Sesleri",
+            "voices": [
+                { 
+                    "voice_id" : 5,
+                    "name": "Kuş Sesi 1",
+                    "voice": "bird1.mp3", 
+                    "length": "02:37"
+                },
+                { 
+                    "voice_id"  : 6,
+                    "name": "Kuş Sesi 2",
+                    "voice": "bird2.mp3", 
+                    "length": "03:01"
+                },
+                { 
+                    "voice_id" : 7,
+                    "name": "Kuş Sesi 3",
+                    "voice": "bird3.mp3", 
+                    "length": "04:31"
+                },
+                { 
+                    "voice_id" : 8,
+                    "name": "Kuş Sesi 4",
+                    "voice": "bird4.mp3", 
+                    "length": "00:53"
+                }
+            ]
+        },
+        {
+            "category_id": 5,
+            "name": "Ateş Sesleri",
+            "voices": [
+                { 
+                    "voice_id" : 9,
+                    "name": "Ateş Sesi 1",
+                    "voice": "fire1.mp3", 
+                    "length": "00:36"
+                },
+                { 
+                    "voice_id" : 10,
+                    "name": "Ateş Sesi 2",
+                    "voice": "fire2.mp3", 
+                    "length": "05:36"
+                }
+            ]
+        },
+        {
+            "category_id": 6,
+            "name": "Su Sesleri",
+            "voices": [
+                { 
+                    "voice_id" : 11,
+                    "name": "Su Sesi 1",
+                    "voice": "water1.mp3", 
+                    "length": "01:48"
+                },
+                { 
+                    "voice_id" : 12,
+                    "name": "Su Sesi 2",
+                    "voice": "water2.mp3", 
+                    "length": "02:16"
+                },
+                { 
+                    "voice_id" : 13,
+                    "name": "Su Sesi 3",
+                    "voice": "water3.mp3", 
+                    "length": "00:44"
+                },
+                { 
+                    "voice_id" : 14,
+                    "name": "Su Sesi 4",
+                    "voice": "water4.mp3", 
+                    "length": "00:47"
+                },
+                { 
+                    "voice_id" : 15,
+                    "name": "Su Sesi 5",
+                    "voice": "water5.mp3", 
+                    "length": "01:02"
+                }
+            ]
+        },
+        {
+            "category_id": 7,
+            "name": "Doğa Sesleri",
+            "voices": [
+                { 
+                    "voice_id" : 16,
+                    "name": "Doğa Sesi 1",
+                    "voice": "air1.mp3", 
+                    "length": "01:40"
+                },
+                { 
+                    "voice_id" : 17,
+                    "name": "Doğa Sesi 2",
+                    "voice": "air2.mp3", 
+                    "length": "00:40"
+                },
+                { 
+                    "voice_id" : 18,
+                    "name": "Doğa Sesi 3",
+                    "voice": "air3.mp3", 
+                    "length": "00:20"
+                }
+            ]
+        }
+    ]
+}

@@ -39,7 +39,7 @@ class HomeActivity : AppCompatActivity() {
         false
     }
 
-    private fun openFragment(fragment:Fragment){
+    fun openFragment(fragment:Fragment){
         try {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container, fragment,fragment.tag)
