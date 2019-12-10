@@ -20,8 +20,10 @@ class SplashActivity : AppCompatActivity() {
     }
 
     internal val mRunnable: Runnable = Runnable {
-        if (!isFinishing)
+        if (!isFinishing) {
             startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
     }
 
     public override fun onDestroy() {
