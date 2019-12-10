@@ -15,18 +15,20 @@ import com.teknasyonchallenge.relaxingsounds.ui.library.LibraryFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
-
+    private lateinit var favoritesFragment:FavoritesFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        favoritesFragment = FavoritesFragment()
         nav_view.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        openFragment(favoritesFragment)
     }
 
     private val mOnNavigationItemSelectedListener = com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                openFragment(FavoritesFragment())
+                openFragment(favoritesFragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
