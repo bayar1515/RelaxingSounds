@@ -30,6 +30,7 @@ class CategoryDetailAdapter(): RecyclerView.Adapter<CategoryDetailAdapter.ViewHo
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.name.text = list[position].getName()
         holder.length.text = String.format(context.resources.getString(R.string.length_holder),list[position].getLength())
+        holder.add.setOnClickListener { listener.addButtonClicked(list[position]) }
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -39,6 +40,6 @@ class CategoryDetailAdapter(): RecyclerView.Adapter<CategoryDetailAdapter.ViewHo
     }
 
     interface ICategoryDetail {
-        fun addButtonClicked()
+        fun addButtonClicked(voiceModel: VoiceModel)
     }
 }

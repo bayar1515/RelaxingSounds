@@ -1,5 +1,6 @@
 package com.teknasyonchallenge.relaxingsounds.model
 
+import android.media.MediaPlayer
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
@@ -20,6 +21,25 @@ class VoiceModel {
     @SerializedName("length")
     @Expose
     private var length: String? = null
+    private var isVoicePlaying = false
+
+    private var voiceMedia:MediaPlayer? = null
+
+    fun getVoiceMedia():MediaPlayer {
+        return this.voiceMedia!!
+    }
+
+    fun setVoiceMedia(voiceMedia:MediaPlayer){
+        this.voiceMedia = voiceMedia
+    }
+
+    fun setIsPlaying(isVoicePlaying:Boolean){
+        this.isVoicePlaying = isVoicePlaying
+    }
+
+    fun isVoicePlaying():Boolean {
+        return isVoicePlaying
+    }
 
     fun getVoiceId(): Int? {
         return voiceId

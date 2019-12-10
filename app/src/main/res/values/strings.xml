@@ -6,4 +6,9 @@
     <string name="library">Kitaplık</string>
     <string name="my_favorites">Favorilerim</string>
     <string name="length_holder">Uzunluk : %1$s</string>
+    <string name="favorites_no_data_text">Favorilerinizde ürün bulunmuyor.</string>
+    <string name="database_double_record_text">Bu sesi daha önce eklediniz.</string>
+    <string name="added_to_favorite">Favorilere eklendi</string>
+    <string name="favorite_voice_remove_message">Ses favorilerinizden kaldırıldı</string>
+    <string name="favorite_voice_remove_error_message">Ses kaldırılırken bir sorun oluştu</string>
 </resources>
