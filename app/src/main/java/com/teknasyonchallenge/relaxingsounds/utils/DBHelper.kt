@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.widget.Toast
 import com.teknasyonchallenge.relaxingsounds.model.VoiceModel
 
 class DBHelper(val context: Context) : SQLiteOpenHelper(context,DBHelper.DATABASE_NAME,null,DBHelper.DATABASE_VERSION) {
@@ -14,7 +13,7 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context,DBHelper.DATABAS
     private val COL_VOICE = "voice"
     private val COL_LENGTH = "length"
     companion object {
-        private val DATABASE_NAME = "SQLITE_DATABASE"//database adı
+        private val DATABASE_NAME = "SQLITE_DATABASE"
         private val DATABASE_VERSION = 1
     }
 
@@ -26,17 +25,15 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context,DBHelper.DATABAS
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
 
-    fun insertData(voiceModel:VoiceModel){
+    fun insertData(voiceModel:VoiceModel) {
         val sqliteDB = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(COL_VOICE_ID , voiceModel.getVoiceId())
+        contentValues.put(COL_VOICE_ID, voiceModel.getVoiceId())
         contentValues.put(COL_NAME, voiceModel.getName())
         contentValues.put(COL_VOICE, voiceModel.getVoice())
-        contentValues.put(COL_LENGTH,voiceModel.getLength())
+        contentValues.put(COL_LENGTH, voiceModel.getLength())
 
-        val result = sqliteDB.insert(TABLE_NAME,null,contentValues)
-
-        //Toast.makeText(context,if(result != -1L) "Kayıt Başarılı" else "Kayıt Yapılamadı.", Toast.LENGTH_SHORT).show()
+        val result = sqliteDB.insert(TABLE_NAME, null, contentValues)
     }
 
     fun readData():ArrayList<VoiceModel>{

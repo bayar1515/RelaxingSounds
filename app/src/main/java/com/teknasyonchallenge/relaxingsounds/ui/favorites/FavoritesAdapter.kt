@@ -1,5 +1,6 @@
 package com.teknasyonchallenge.relaxingsounds.ui.favorites
 
+import android.content.Context
 import android.media.MediaPlayer
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,18 +10,22 @@ import android.widget.SeekBar
 import androidx.recyclerview.widget.RecyclerView
 import com.teknasyonchallenge.relaxingsounds.R
 import com.teknasyonchallenge.relaxingsounds.model.VoiceModel
+import com.teknasyonchallenge.relaxingsounds.utils.SharedController
 import kotlinx.android.synthetic.main.card_favorites.view.*
 
 class FavoritesAdapter(): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
     private var list:ArrayList<VoiceModel> = ArrayList()
     private lateinit var listener: IFavorites
-    constructor(listener:IFavorites):this() {
-        this.list = list
+    private lateinit var context: Context
+    private lateinit var sharedController:SharedController
+    constructor(listener:IFavorites,context:Context):this() {
         this.listener = listener
+        this.context = context
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_favorites, parent, false)
+        sharedController = SharedController(context)
         return ViewHolder(v)
     }
 
@@ -45,7 +50,7 @@ class FavoritesAdapter(): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
         }
         holder.changeVoice.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                listener.changeVoice(list[position].getVoiceMedia(),seekBarNormalize(p1))
+                listener.changeVoice(list[position].getVoiceMedia(),sharedController.seekBarNormalize(p1))
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -57,32 +62,6 @@ class FavoritesAdapter(): RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
             }
         })
 
-    }
-
-    fun seekBarNormalize(progress:Int):Float {
-        when(progress) {
-            0 -> { return 0.0F }
-            1 -> { return 0.05F}
-            2 -> { return 0.10F}
-            3 -> { return 0.15F}
-            4 -> { return 0.20F}
-            5 -> { return 0.25F}
-            6 -> { return 0.30F}
-            7 -> { return 0.35F}
-            8 -> { return 0.40F}
-            9 -> { return 0.45F}
-            10 -> { return 0.50F}
-            11 -> { return 0.55F}
-            12 -> {return 0.60F }
-            13 -> { return 0.65F}
-            14 -> { return 0.70F}
-            15 -> { return 0.75F}
-            16 -> { return 0.80F}
-            17 -> { return 0.85F}
-            18 -> { return 0.90F}
-            19 -> { return 0.95F}
-        }
-        return 1F
     }
 
     fun setList(list:ArrayList<VoiceModel>){

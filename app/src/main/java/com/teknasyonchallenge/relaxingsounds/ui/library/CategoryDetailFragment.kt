@@ -11,17 +11,20 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.teknasyonchallenge.relaxingsounds.R
 import com.teknasyonchallenge.relaxingsounds.model.VoiceModel
+import com.teknasyonchallenge.relaxingsounds.ui.HomeActivity
 import com.teknasyonchallenge.relaxingsounds.utils.DBHelper
 
 class CategoryDetailFragment : Fragment(),CategoryDetailAdapter.ICategoryDetail {
     private  var voiceList:ArrayList<VoiceModel> = ArrayList()
     private lateinit var recyclerView: RecyclerView
     private var favoriteVoiceList:ArrayList<VoiceModel> = ArrayList()
+    private var title = ""
     private  val db by lazy { DBHelper(activity as Activity)  }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             voiceList = arguments?.getSerializable("voice_list") as ArrayList<VoiceModel>
+            title = arguments?.getString("title").toString()
         }
     }
 
@@ -31,6 +34,7 @@ class CategoryDetailFragment : Fragment(),CategoryDetailAdapter.ICategoryDetail 
     ): View? {
         val view = inflater.inflate(R.layout.fragment_category_detail, container, false)
 
+        (activity as HomeActivity).setAppBarTitle(title)
         favoriteVoiceList = db.readData()
 
         recyclerView = view.findViewById(R.id.recyclerView)
@@ -61,10 +65,11 @@ class CategoryDetailFragment : Fragment(),CategoryDetailAdapter.ICategoryDetail 
 
     companion object {
         @JvmStatic
-        fun newInstance(voiceList: ArrayList<VoiceModel>) =
+        fun newInstance(voiceList: ArrayList<VoiceModel>,title:String) =
             CategoryDetailFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable("voice_list", voiceList)
+                    putString("title",title)
                 }
             }
     }

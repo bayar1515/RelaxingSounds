@@ -31,6 +31,7 @@ class VoiceModel {
 
     fun setVoiceMedia(voiceMedia:MediaPlayer){
         this.voiceMedia = voiceMedia
+        this.voiceMedia!!.setVolume(0.50F,0.50F)
     }
 
     fun setIsPlaying(isVoicePlaying:Boolean){

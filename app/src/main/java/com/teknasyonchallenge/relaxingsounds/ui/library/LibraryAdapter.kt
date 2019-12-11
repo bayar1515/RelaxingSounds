@@ -39,7 +39,11 @@ class LibraryAdapter(): RecyclerView.Adapter<LibraryAdapter.ViewHolder>() {
             7 -> { holder.image.setImageResource(R.drawable.ic_category_weather) }
         }
 
-        holder.itemView.setOnClickListener { listener.itemClicked(list[position].getVoices()) }
+        holder.itemView.setOnClickListener { list[position].getName()?.let { it1 ->
+            listener.itemClicked(list[position].getVoices(),
+                it1
+            )
+        } }
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -48,6 +52,6 @@ class LibraryAdapter(): RecyclerView.Adapter<LibraryAdapter.ViewHolder>() {
     }
 
     interface ILibrary{
-        fun itemClicked(voiceList:ArrayList<VoiceModel>)
+        fun itemClicked(voiceList:ArrayList<VoiceModel>,title:String)
     }
 }

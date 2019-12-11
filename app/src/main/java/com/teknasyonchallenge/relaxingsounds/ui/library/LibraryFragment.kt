@@ -31,6 +31,8 @@ class LibraryFragment : Fragment(),LibraryAdapter.ILibrary {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_library, container, false)
 
+        (activity as HomeActivity).setAppBarTitle(resources.getString(R.string.library))
+
         sharedController = SharedController(activity as Activity)
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.setHasFixedSize(true)
@@ -46,7 +48,7 @@ class LibraryFragment : Fragment(),LibraryAdapter.ILibrary {
         return view
     }
 
-    override fun itemClicked(voiceList: ArrayList<VoiceModel>) {
-        (activity as HomeActivity).openFragment(CategoryDetailFragment.newInstance(voiceList))
+    override fun itemClicked(voiceList: ArrayList<VoiceModel>,title:String) {
+        (activity as HomeActivity).openFragment(CategoryDetailFragment.newInstance(voiceList,title))
     }
 }

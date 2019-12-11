@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.teknasyonchallenge.relaxingsounds.R
 import com.teknasyonchallenge.relaxingsounds.model.VoiceModel
+import com.teknasyonchallenge.relaxingsounds.ui.HomeActivity
 import com.teknasyonchallenge.relaxingsounds.utils.DBHelper
+import com.teknasyonchallenge.relaxingsounds.utils.SharedController
 
 class FavoritesFragment : Fragment(),FavoritesAdapter.IFavorites {
 
@@ -21,41 +23,13 @@ class FavoritesFragment : Fragment(),FavoritesAdapter.IFavorites {
     private lateinit var adapter: FavoritesAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var noDataText:TextView
-    private lateinit var mediaPlayer:MediaPlayer
     private var  favoriteList:ArrayList<VoiceModel> = ArrayList()
+    private lateinit var sharedController: SharedController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
 
         }
-    }
-
-    fun getRefactoredList(list:ArrayList<VoiceModel>):ArrayList<VoiceModel> {
-        for (i in list){
-            when(i.getVoiceId()){
-                0 -> { i.setVoiceMedia(MediaPlayer.create(context,R.raw.wolf)) }
-                1 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.cicada))}
-                2 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.cricket))}
-                3 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.frog1))}
-                4 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.frog2))}
-                5 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.bird1))}
-                6 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.bird2))}
-                7 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.bird3))}
-                8 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.bird4))}
-                9 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.fire1))}
-                10 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.fire2))}
-                11 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.water1))}
-                12 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.water2))}
-                13 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.water3))}
-                14 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.water4))}
-                15 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.water5))}
-                16 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.air1))}
-                17 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.air2))}
-                18 -> {i.setVoiceMedia(MediaPlayer.create(context,R.raw.air3))}
-            }
-        }
-
-        return list
     }
 
     override fun onCreateView(
@@ -64,40 +38,29 @@ class FavoritesFragment : Fragment(),FavoritesAdapter.IFavorites {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_favorites, container, false)
 
-
-
-
-
+        sharedController = SharedController(activity as Activity)
+        (activity as HomeActivity).setAppBarTitle(resources.getString(R.string.my_favorites))
 
         noDataText = view.findViewById(R.id.notDataTextView)
         recyclerView = view.findViewById(R.id.recyclerView)
-        favoriteList =getRefactoredList(db.readData())
-
-
-
-
-
-
+        favoriteList = sharedController.getRefactoredList(db.readData())
 
         if (favoriteList.size > 0) {
             noDataText.visibility = View.GONE
             recyclerView.setHasFixedSize(true)
             recyclerView.layoutManager = LinearLayoutManager(activity)
-            adapter = FavoritesAdapter(this)
+            adapter = FavoritesAdapter(this,activity as Activity)
             recyclerView.adapter = adapter
             adapter.setList(favoriteList)
         }else
            noDataText.visibility = View.VISIBLE
-
-
-
 
         return view
     }
 
     override fun removeItem(voiceModel: VoiceModel) {
         if (db.delete(voiceModel)) {
-            favoriteList = db.readData()
+            favoriteList = sharedController.getRefactoredList(db.readData())
             adapter.setList(favoriteList)
             if (favoriteList.size == 0)
                 noDataText.visibility = View.VISIBLE
